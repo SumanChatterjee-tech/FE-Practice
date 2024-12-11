@@ -1,0 +1,22 @@
+
+<div class="main-form">
+    <div class="form-container">
+        <form [formGroup]="myLoginForm" (ngSubmit)="submitForm()">
+
+            <label for="username">Username</label>
+            <input type="text" id="username" formControlName="username" required autocomplete="off">
+            <span *ngIf="myLoginForm.get('username')?.touched && myLoginForm.get('username')?.invalid" style="color:red;">Required</span>
+
+            <label for="password">Password</label>
+            <input type="text" id="password" formControlName="password">
+            <span *ngIf="myLoginForm.get('password')?.touched && myLoginForm.get('password')?.invalid" style="color:red;">Please check</span>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" formControlName="emailId" required>
+            <span *ngIf="myLoginForm.get('emailId')?.touched && myLoginForm.get('username')?.invalid" style="color:red;">Required</span>
+
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</div>

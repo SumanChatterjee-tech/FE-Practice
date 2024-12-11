@@ -1,0 +1,35 @@
+<div class="container">
+    <form (ngSubmit)="submit(f)" #f="ngForm">
+        <div class="form-geroup">
+            <label for="event-name">Event Name: </label>
+            <input ngModel type="text" name="name" id="event-name" #eventName="ngModel" required/>
+            <span *ngIf="eventName.touched" style="color:red;">Required</span>
+        </div>
+        <div class="form-geroup">
+            <label for="date">Date: </label>
+            <input ngModel type="text" name="date" id="date"/>
+        </div>
+        <div class="form-geroup">
+            <label for="time">Time: </label>
+            <input ngModel type="text" name="time" id="time"/>
+        </div>
+        <div ngModelGroup="location">
+            <div class="form-group">
+                <label for="address">Address: </label>
+                <input ngModel  name="address" id="address" type="text"/>
+              </div>
+              <div class="form-group">
+                <label for="city">City: </label>
+                <input ngModel  name="city"  id="city" type="text"/>
+              </div>
+              <div class="form-group">
+                <label for="country">Country: </label>
+                <input ngModel name="country" id="country" type="text"/>
+              </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="f.invalid">Save</button>
+        <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
+
+    </form>
+</div>

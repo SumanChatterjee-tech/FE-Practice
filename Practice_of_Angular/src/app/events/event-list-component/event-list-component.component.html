@@ -1,0 +1,51 @@
+<app-ng-content-example [Name]="nameIcon"></app-ng-content-example>
+<div class="container">
+    <h1>Congradulations!</h1>
+    <h4>You have got events to display</h4>
+    <hr/>
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                  <th>Number #</th>
+                  <th>Event</th>
+                  <th>Date</th>      
+                  <th>Time</th>
+                  <th>Address</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let event of events; index as i">
+                    <td>{{i+1}}</td>
+                    <td><a [routerLink]="['events', event.name]"> {{event.name}} </a> </td>
+                    <td> {{event.date}} </td>
+                    <td> {{event.time}} </td>
+                    <app-event-address-child-component [address]="event.location"
+                     (sendEventBackToParent)="handleDataFromChild($event)"></app-event-address-child-component>
+                </tr>
+            </tbody>
+        </table>
+        <div>From Child After event Emiiter : {{stringCameFromChild}}</div>
+    </div>
+    <hr>
+    <span><button type="button" class="btn btn-success" (click)="createEvent()">Create new event</button></span>
+    <hr>
+    <h2>Pratice on Hidden and ngIF property</h2>
+    <div class="container">
+        <span *ngFor="let event of events"> <!--Locally add a parameter hidden or Suman or anyname to assign-->
+            <span [hidden]="event.Suman"><button class="btn btn-warning" 
+                (click)="event.Suman=true">Collapse</button></span>
+
+            <span [hidden]="!event.Suman"><button [hidden]="!event.Suman" class="btn btn-warning" 
+                (click)="event.Suman=false">Expand</button></span>
+            <div>
+                <h1>{{event.name}}</h1>
+            </div>
+            <div [hidden]="event.Suman">
+                    <h4>Date: {{event.date}}</h4>
+                    <h4>Time: {{event.time}}</h4>
+                    <app-event-address-child-component [address]="event.location"></app-event-address-child-component>
+            </div>
+        </span>
+    </div>
+</div>
